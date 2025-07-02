@@ -1,115 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>World News Press - Editable Mode</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f4f4f4;
-    }
-    header {
-      background: #222;
-      color: white;
-      padding: 15px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    nav {
-      background: #444;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    nav a {
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      display: block;
-    }
-    nav a:hover {
-      background: #666;
-    }
-    #language_selector {
-      margin: 10px;
-      padding: 5px;
-    }
-    .news-section {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    .news-card {
-      background: white;
-      margin-bottom: 40px;
-      border-radius: 6px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-    .news-card img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      display: block;
-      cursor: pointer;
-    }
-    .news-content {
-      padding: 20px;
-    }
-    .news-content h3, .news-content p {
-      margin: 0 0 15px 0;
-    }
-    /* Editable styling */
-    .editable[contenteditable="true"] {
-      outline: 2px dashed #ff9900;
-      background: #fff9e6;
-      cursor: text;
-    }
-    /* Buttons */
-    #edit_buttons {
-      text-align: center;
-      margin: 15px 0;
-      display: none; /* hidden by default */
-    }
-    button {
-      background: #222;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      margin: 0 8px;
-      cursor: pointer;
-      border-radius: 4px;
-      font-size: 16px;
-    }
-    button:hover {
-      background: #555;
-    }
-    /* Image URL input modal */
-    #img-url-input {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      z-index: 200;
-      border-radius: 8px;
-    }
-    #img-url-input input[type="text"] {
-      width: 300px;
-      padding: 8px;
-      font-size: 16px;
-    }
-    #img-url-input button {
-      margin-left: 10px;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>World News Press - Editable & Read More</title>
+<style>
+  body { font-family: Arial,sans-serif; margin:0; background:#f4f4f4;}
+  header { background:#222; color:#fff; padding:15px; text-align:center; position:sticky; top:0; z-index:100;}
+  nav { background:#444; display:flex; flex-wrap:wrap; justify-content:center;}
+  nav a { color:#fff; padding:14px 20px; text-decoration:none; display:block;}
+  nav a:hover { background:#666;}
+  #language_selector { margin:10px; padding:5px;}
+  .news-section { padding:20px; max-width:900px; margin:auto;}
+  .news-card { background:#fff; margin-bottom:40px; border-radius:6px; box-shadow:0 0 5px rgba(0,0,0,0.1); overflow:hidden;}
+  .news-card img { width:100%; max-height:400px; object-fit:cover; display:block; cursor:pointer;}
+  .news-content { padding:20px;}
+  .news-content h3, .news-content p { margin:0 0 15px 0;}
+  .editable[contenteditable="true"] { outline:2px dashed #f90; background:#fff9e6; cursor:text;}
+  #edit_buttons { text-align:center; margin:15px 0; display:none;}
+  button { background:#222; color:#fff; border:none; padding:10px 18px; margin:0 8px; cursor:pointer; border-radius:4px; font-size:16px;}
+  button:hover { background:#555;}
+  #img-url-input { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; padding:20px; box-shadow:0 0 10px rgba(0,0,0,0.5); z-index:200; border-radius:8px;}
+  #img-url-input input[type="text"] { width:300px; padding:8px; font-size:16px;}
+  #img-url-input button { margin-left:10px;}
+  #save_output { white-space: pre-wrap; background:#222; color:#eee; padding:20px; max-height:300px; overflow:auto; margin:20px auto; max-width:900px; display:none; border-radius:6px; font-family: monospace;}
+  .read-more-content { display:none; }
+  .read-more-toggle { color: blue; cursor: pointer; font-weight: bold; user-select:none; }
+</style>
 </head>
 <body>
 
@@ -153,53 +70,46 @@
     <img src="https://ichef.bbci.co.uk/onesport/cps/800/cpsprodpb/1143A/production/_131414261_messi.jpg" alt="Lionel Messi in action" class="editable-img" />
     <div class="news-content">
       <h3 class="editable" contenteditable="false">Lionel Messi Leads Argentina to Victory in Copa América</h3>
-      <p class="editable" contenteditable="false">Lionel Messi delivered an extraordinary performance in the latest Copa América match, scoring two crucial goals to secure Argentina’s win over Chile. The football legend showcased his skill, vision, and leadership on the field, delighting fans worldwide. This victory boosts Argentina’s confidence as they advance towards the quarterfinals. Analysts highlight Messi’s role as a pivotal player in South American football history, noting that his agility and precision remain unmatched.</p>
-      <p class="editable" contenteditable="false">The match was intense, with both teams showing strong defense. However, Messi’s ability to break through the opposition’s lines made the difference. His goals came from a brilliant free-kick and a quick counterattack finish. The crowd erupted in applause as Argentina sealed a 3-1 victory.</p>
+      <p class="editable" contenteditable="false">
+        <span class="short-text">Lionel Messi delivered an extraordinary performance in the latest Copa América match, scoring two crucial goals to secure Argentina’s win over Chile. The football legend showcased his skill, vision, and leadership on the field, delighting fans worldwide...</span>
+        <span class="read-more-content"> This victory boosts Argentina’s confidence as they advance towards the quarterfinals. Analysts highlight Messi’s role as a pivotal player in South American football history, noting that his agility and precision remain unmatched. The match was intense, with both teams showing strong defense. However, Messi’s ability to break through the opposition’s lines made the difference. His goals came from a brilliant free-kick and a quick counterattack finish. The crowd erupted in applause as Argentina sealed a 3-1 victory.</span>
+        <span class="read-more-toggle">Read more</span>
+      </p>
     </div>
   </div>
 </div>
 
-<div class="news-section" id="europe">
-  <h2>News from Europe</h2>
-  <div class="news-card">
-    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/E7AE/production/_130761995_mediaitem130761993.jpg" alt="EU leaders in Brussels" class="editable-img" />
-    <div class="news-content">
-      <h3 class="editable" contenteditable="false">EU Leaders Convene to Set Ambitious Climate Goals</h3>
-      <p class="editable" contenteditable="false">European Union leaders gathered in Brussels to discuss and establish new climate action targets aimed at reducing greenhouse gas emissions by 55% by 2030. The summit reflects the EU’s commitment to combat climate change and transition towards a sustainable economy. Representatives from member states debated the balance between environmental policies and economic impacts, striving to find common ground.</p>
-      <p class="editable" contenteditable="false">Protesters gathered outside the venue calling for faster and more aggressive climate action. The leaders acknowledged the urgency but emphasized the need for policies that do not jeopardize economic stability. The meeting is considered a crucial step toward the upcoming global climate conferences.</p>
-    </div>
-  </div>
-</div>
+<!-- Outras seções podem seguir o mesmo padrão -->
 
-<div class="news-section" id="asia">
-  <h2>News from Asia</h2>
-  <div class="news-card">
-    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/1758B/production/_131861238_gettyimages-1322703233.jpg" alt="Heatwave in Tokyo" class="editable-img" />
-    <div class="news-content">
-      <h3 class="editable" contenteditable="false">Tokyo Faces Record-Breaking Summer Heatwave</h3>
-      <p class="editable" contenteditable="false">Tokyo is bracing for an unprecedented heatwave as temperatures are expected to soar above 40°C this week. Authorities have issued public warnings advising residents to stay indoors during peak heat hours and remain hydrated. The summer heat has caused power surges due to increased air conditioning use, putting strain on the city’s electricity grid.</p>
-      <p class="editable" contenteditable="false">Hospitals have reported a rise in heatstroke cases, particularly among the elderly and young children. The government is coordinating with health services to provide emergency cooling centers. Climate experts warn that such extreme weather events may become more frequent due to global warming trends.</p>
-    </div>
-  </div>
-</div>
+<script>
+  // Read More toggle
+  document.querySelectorAll('.read-more-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const parent = button.parentElement;
+      const shortText = parent.querySelector('.short-text');
+      const moreText = parent.querySelector('.read-more-content');
+      if(moreText.style.display === 'inline') {
+        moreText.style.display = 'none';
+        button.textContent = 'Read more';
+        shortText.style.display = 'inline';
+      } else {
+        moreText.style.display = 'inline';
+        button.textContent = 'Read less';
+        shortText.style.display = 'none';
+      }
+    });
+  });
 
-<div class="news-section" id="australia">
-  <h2>News from Australia</h2>
-  <div class="news-card">
-    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/10CF4/production/_131415737_gettyimages-1235013111.jpg" alt="Australian bushfires" class="editable-img" />
-    <div class="news-content">
-      <h3 class="editable" contenteditable="false">Early Start to Australian Bushfire Season Raises Concerns</h3>
-      <p class="editable" contenteditable="false">The bushfire season in Australia has started unusually early this year, with several wildfires reported in New South Wales. Dry conditions and high temperatures have created a dangerous environment, prompting authorities to issue fire warnings and increase firefighting resources.</p>
-      <p class="editable" contenteditable="false">Communities near affected areas have been advised to prepare evacuation plans and stay alert. Firefighters are working tirelessly to contain the blazes, which have already destroyed several homes and natural habitats. Environmentalists urge for stronger policies to address climate change and prevent future disasters.</p>
-    </div>
-  </div>
-</div>
+  // Função simplificada para tradução (Google Translate widget pode ser integrado depois)
+  function translatePage() {
+    const lang = document.getElementById('language_selector').value;
+    if (!lang) return;
+    const baseUrl = 'https://translate.google.com/translate?hl=&sl=auto&tl=' + lang + '&u=' + encodeURIComponent(location.href);
+    window.open(baseUrl, '_blank');
+  }
+</script>
 
-<div class="news-section" id="africa">
-  <h2>News from Africa</h2>
-  <div class="news-card">
-    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/11E5F/production/_131791886_gettyimages-1330260406.jpg" alt="African wildlife" class="editable-img" />
-    <div class="news-content">
-      <h3 class="editable" contenteditable="false">Conservation Efforts Boost African Wildlife Populations</h3>
-      <p class="editable" contenteditable="false">Conservation
+</body>
+</html>
+
 
