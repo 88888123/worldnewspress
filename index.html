@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>World News Press</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f9f9f9;
+      color: #222;
+    }
+    header {
+      background: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    nav {
+      background: #0055a5;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1em;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    article {
+      background: white;
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    }
+    article h2 {
+      margin-top: 0;
+      color: #003366;
+    }
+    article time {
+      font-size: 0.9em;
+      color: #777;
+    }
+    article img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #555;
+      border-top: 1px solid #ddd;
+      margin-top: 40px;
+    }
+    #google_translate_element {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+    }
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+      main {
+        margin: 15px 10px;
+        padding: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>World News Press</h1>
+  </header>
+
+  <nav>
+    <a href="#">World</a>
+    <a href="#">Politics</a>
+    <a href="#">Economy</a>
+    <a href="#">Science</a>
+  </nav>
+
+  <div id="google_translate_element"></div>
+
+  <main>
+    <article>
+      <h2>Global Leaders Meet to Discuss Climate Action</h2>
+      <time datetime="2025-07-01">July 1, 2025</time>
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Global Leaders Meeting" />
+      <p>Representatives from over 100 countries gathered this week in Geneva to commit to more aggressive carbon emission reductions.</p>
+    </article>
+
+    <article>
+      <h2>Breakthrough in Renewable Energy Technology Announced</h2>
+      <time datetime="2025-06-30">June 30, 2025</time>
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" alt="Solar Panels" />
+      <p>Scientists have developed a new solar panel that significantly increases energy conversion efficiency, promising cheaper clean energy worldwide.</p>
+    </article>
+
+    <article>
+      <h2>Global Markets React to New Trade Agreement</h2>
+      <time datetime="2025-06-29">June 29, 2025</time>
+      <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=900&q=80" alt="Stock Market" />
+      <p>Stock markets around the world showed positive gains after the announcement of a landmark trade deal between major economic powers.</p>
+    </article>
+
+    <article>
+      <h2>Space Agency Plans Mission to Mars in 2030</h2>
+      <time datetime="2025-06-28">June 28, 2025</time>
+      <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=900&q=80" alt="Mars Mission" />
+      <p>The international space agency revealed its roadmap for a manned mission to Mars, aiming to launch the first crew in 2030.</p>
+    </article>
+
+    <article>
+      <h2>Innovations in AI Continue to Transform Healthcare</h2>
+      <time datetime="2025-06-27">June 27, 2025</time>
+      <img src="https://images.unsplash.com/photo-1581091870622-9ac937aa012d?auto=format&fit=crop&w=900&q=80" alt="AI in Healthcare" />
+      <p>Artificial intelligence applications in diagnostics and treatment planning are rapidly evolving, improving patient outcomes worldwide.</p>
+    </article>
+  </main>
+
+  <footer>
+    &copy; 2025 World News Press. All rights reserved.
+  </footer>
+
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
