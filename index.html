@@ -2,157 +2,219 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>World News Press</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      background: #f9f9f9;
-      color: #222;
+      margin: 0;
+      background: #f4f4f4;
     }
     header {
-      background: #003366;
+      background: #222;
       color: white;
-      padding: 20px;
+      padding: 15px;
       text-align: center;
     }
-    header h1 {
-      margin: 0;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
     nav {
-      background: #0055a5;
+      background: #444;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
-      padding: 10px 0;
     }
     nav a {
       color: white;
+      padding: 14px 20px;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1em;
+      display: block;
     }
     nav a:hover {
-      text-decoration: underline;
+      background: #666;
     }
-    main {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 0 20px;
+    #language_selector {
+      margin: 10px;
+      padding: 5px;
     }
-    article {
-      background: white;
-      border-radius: 6px;
+    .news-section {
       padding: 20px;
-      margin-bottom: 30px;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
     }
-    article h2 {
-      margin-top: 0;
-      color: #003366;
-    }
-    article time {
-      font-size: 0.9em;
-      color: #777;
-    }
-    article img {
-      max-width: 100%;
+    .news-card {
+      background: white;
+      margin-bottom: 20px;
       border-radius: 6px;
-      margin-top: 12px;
-      margin-bottom: 12px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      overflow: hidden;
     }
-    footer {
-      text-align: center;
+    .news-card img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: cover;
+    }
+    .news-content {
       padding: 15px;
-      font-size: 0.9em;
-      color: #555;
-      border-top: 1px solid #ddd;
-      margin-top: 40px;
     }
-    #google_translate_element {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      z-index: 1000;
-    }
-    @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-      }
-      main {
-        margin: 15px 10px;
-        padding: 0 10px;
-      }
+    .read-more {
+      color: blue;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>World News Press</h1>
-  </header>
 
-  <nav>
-    <a href="#">World</a>
-    <a href="#">Politics</a>
-    <a href="#">Economy</a>
-    <a href="#">Science</a>
-  </nav>
-
+<header>
+  <h1>World News Press</h1>
   <div id="google_translate_element"></div>
+  <select id="language_selector" onchange="translatePage()">
+    <option value="">Select Language</option>
+    <option value="en">English</option>
+    <option value="es">Spanish</option>
+    <option value="fr">French</option>
+    <option value="de">German</option>
+    <option value="zh-CN">Chinese</option>
+    <option value="ja">Japanese</option>
+    <option value="ru">Russian</option>
+    <option value="ar">Arabic</option>
+    <option value="pt">Portuguese</option>
+    <option value="hi">Hindi</option>
+    <option value="it">Italian</option>
+    <option value="ko">Korean</option>
+  </select>
+</header>
 
-  <main>
-    <article>
-      <h2>Global Leaders Meet to Discuss Climate Action</h2>
-      <time datetime="2025-07-01">July 1, 2025</time>
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Global Leaders Meeting" />
-      <p>Representatives from over 100 countries gathered this week in Geneva to commit to more aggressive carbon emission reductions.</p>
-    </article>
+<nav>
+  <a href="#sport">Sport</a>
+  <a href="#europe">Europe</a>
+  <a href="#asia">Asia</a>
+  <a href="#australia">Australia</a>
+  <a href="#africa">Africa</a>
+  <a href="#southamerica">South America</a>
+</nav>
 
-    <article>
-      <h2>Breakthrough in Renewable Energy Technology Announced</h2>
-      <time datetime="2025-06-30">June 30, 2025</time>
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" alt="Solar Panels" />
-      <p>Scientists have developed a new solar panel that significantly increases energy conversion efficiency, promising cheaper clean energy worldwide.</p>
-    </article>
+<div class="news-section" id="sport">
+  <h2>Sport</h2>
+  <div class="news-card">
+    <img src="https://ichef.bbci.co.uk/onesport/cps/800/cpsprodpb/1143A/production/_131414261_messi.jpg" alt="Sport news">
+    <div class="news-content">
+      <h3>Lionel Messi Scores Twice in Copa América</h3>
+      <p class="short-text">In a thrilling performance, Lionel Messi led Argentina to victory against Chile in the group stage...</p>
+      <p class="full-text" style="display:none;">In a thrilling performance, Lionel Messi scored two brilliant goals, securing Argentina's lead in the Copa América group stage. Fans around the world celebrated the legendary player's contribution, as Argentina now looks forward to the quarterfinals.</p>
+      <span class="read-more" onclick="toggleText(this)">Read more</span>
+    </div>
+  </div>
+</div>
 
-    <article>
-      <h2>Global Markets React to New Trade Agreement</h2>
-      <time datetime="2025-06-29">June 29, 2025</time>
-      <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=900&q=80" alt="Stock Market" />
-      <p>Stock markets around the world showed positive gains after the announcement of a landmark trade deal between major economic powers.</p>
-    </article>
+<div class="news-section" id="europe">
+  <h2>News from Europe</h2>
+  <div class="news-card">
+    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/E7AE/production/_130761995_mediaitem130761993.jpg" alt="Europe">
+    <div class="news-content">
+      <h3>EU Leaders Meet in Brussels to Discuss Climate Goals</h3>
+      <p class="short-text">European Union leaders are meeting to set new environmental targets for the next decade...</p>
+      <p class="full-text" style="display:none;">European Union leaders are meeting in Brussels this week to decide on ambitious climate goals, aiming to reduce emissions by 55% before 2030. Protests and debates continue across European capitals regarding the pace and cost of the transition.</p>
+      <span class="read-more" onclick="toggleText(this)">Read more</span>
+    </div>
+  </div>
+</div>
 
-    <article>
-      <h2>Space Agency Plans Mission to Mars in 2030</h2>
-      <time datetime="2025-06-28">June 28, 2025</time>
-      <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=900&q=80" alt="Mars Mission" />
-      <p>The international space agency revealed its roadmap for a manned mission to Mars, aiming to launch the first crew in 2030.</p>
-    </article>
+<div class="news-section" id="asia">
+  <h2>News from Asia</h2>
+  <div class="news-card">
+    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/1758B/production/_131861238_gettyimages-1322703233.jpg" alt="Asia">
+    <div class="news-content">
+      <h3>Tokyo Prepares for Summer Heatwave</h3>
+      <p class="short-text">Authorities in Japan issue warnings as Tokyo faces extreme heat and humidity...</p>
+      <p class="full-text" style="display:none;">Authorities in Japan have issued public health warnings as Tokyo and surrounding areas are set to experience a record-breaking heatwave. Citizens are urged to stay hydrated and avoid outdoor activity during the hottest hours.</p>
+      <span class="read-more" onclick="toggleText(this)">Read more</span>
+    </div>
+  </div>
+</div>
 
-    <article>
-      <h2>Innovations in AI Continue to Transform Healthcare</h2>
-      <time datetime="2025-06-27">June 27, 2025</time>
-      <img src="https://images.unsplash.com/photo-1581091870622-9ac937aa012d?auto=format&fit=crop&w=900&q=80" alt="AI in Healthcare" />
-      <p>Artificial intelligence applications in diagnostics and treatment planning are rapidly evolving, improving patient outcomes worldwide.</p>
-    </article>
-  </main>
+<div class="news-section" id="australia">
+  <h2>News from Australia</h2>
+  <div class="news-card">
+    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/10CF4/production/_131415737_gettyimages-1235013111.jpg" alt="Australia">
+    <div class="news-content">
+      <h3>Australian Bushfire Season Begins Early</h3>
+      <p class="short-text">Wildfires have already started in parts of New South Wales as temperatures rise unusually early...</p>
+      <p class="full-text" style="display:none;">Authorities in Australia are warning of a difficult fire season ahead, as dry conditions and high temperatures lead to early outbreaks of bushfires. Firefighters are already battling several blazes outside Sydney.</p>
+      <span class="read-more" onclick="toggleText(this)">Read more</span>
+    </div>
+  </div>
+</div>
 
-  <footer>
-    &copy; 2025 World News Press. All rights reserved.
-  </footer>
+<div class="news-section" id="africa">
+  <h2>News from Africa</h2>
+  <div class="news-card">
+    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/9874/production/_131551224_africaweather.jpg" alt="Africa">
+    <div class="news-content">
+      <h3>Severe Flooding Hits West Africa</h3>
+      <p class="short-text">Heavy rains have caused serious flooding across parts of Nigeria, Ghana, and Senegal...</p>
+      <p class="full-text" style="display:none;">Dozens of villages are affected and thousands displaced as weeks of rain lead to flooding in West Africa. Rescue teams are working to provide aid, and governments are coordinating responses.</p>
+      <span class="read-more" onclick="toggleText(this)">Read more</span>
+    </div>
+  </div>
+</div>
 
-  <script>
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false
-      }, 'google_translate_element');
+<div class="news-section" id="southamerica">
+  <h2>News from South America</h2>
+  <div class="news-card">
+    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/CE14/production/_131875228_amazon.jpg" alt="South America">
+    <div class="news-content">
+      <h3>Amazon Rainforest Faces Record Deforestation</h3>
+      <p class="short-text">Environmental groups are raising alarms as satellite data shows record deforestation in June...</p>
+      <p class="full-text" style="display:none;">Deforestation in the Amazon rainforest has reached a new monthly record, according to Brazil’s National Space Research Institute. Environmental activists are calling for immediate action to protect the ecosystem.</p>
+      <span class="read-more" onclick="toggleText(this)">Read more</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleText(el) {
+  const short = el.previousElementSibling.previousElementSibling;
+  const full = el.previousElementSibling;
+  if (full.style.display === "none") {
+    short.style.display = "none";
+    full.style.display = "block";
+    el.textContent = "Show less";
+  } else {
+    short.style.display = "block";
+    full.style.display = "none";
+    el.textContent = "Read more";
+  }
+}
+</script>
+
+<!-- Google Translate -->
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,es,fr,de,zh-CN,ja,ru,ar,pt,hi,it,ko',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+function translatePage() {
+  var lang = document.getElementById('language_selector').value;
+  if(lang === '') return;
+  var frame = document.querySelector('iframe.goog-te-menu-frame');
+  if(frame) {
+    var innerDoc = frame.contentDocument || frame.contentWindow.document;
+    var langLinks = innerDoc.querySelectorAll('a.goog-te-menu2-item span.text');
+    for(var i=0; i<langLinks.length; i++) {
+      if(langLinks[i].innerText === document.getElementById('language_selector').options[document.getElementById('language_selector').selectedIndex].text) {
+        langLinks[i].click();
+        break;
+      }
     }
-  </script>
-  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  }
+}
+var gtScript = document.createElement('script');
+gtScript.type = 'text/javascript';
+gtScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+document.head.appendChild(gtScript);
+</script>
+
 </body>
 </html>
