@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>World News Press</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>World News Press - Editable Mode</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -15,6 +15,9 @@
       color: white;
       padding: 15px;
       text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     nav {
       background: #444;
@@ -37,27 +40,74 @@
     }
     .news-section {
       padding: 20px;
+      max-width: 900px;
+      margin: auto;
     }
     .news-card {
       background: white;
-      margin-bottom: 20px;
+      margin-bottom: 40px;
       border-radius: 6px;
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
       overflow: hidden;
     }
     .news-card img {
       width: 100%;
-      max-height: 250px;
+      max-height: 400px;
       object-fit: cover;
+      display: block;
+      cursor: pointer;
     }
     .news-content {
-      padding: 15px;
+      padding: 20px;
     }
-    .read-more {
-      color: blue;
+    .news-content h3, .news-content p {
+      margin: 0 0 15px 0;
+    }
+    /* Editable styling */
+    .editable[contenteditable="true"] {
+      outline: 2px dashed #ff9900;
+      background: #fff9e6;
+      cursor: text;
+    }
+    /* Buttons */
+    #edit_buttons {
+      text-align: center;
+      margin: 15px 0;
+      display: none; /* hidden by default */
+    }
+    button {
+      background: #222;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      margin: 0 8px;
       cursor: pointer;
-      display: inline-block;
-      margin-top: 10px;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #555;
+    }
+    /* Image URL input modal */
+    #img-url-input {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      z-index: 200;
+      border-radius: 8px;
+    }
+    #img-url-input input[type="text"] {
+      width: 300px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    #img-url-input button {
+      margin-left: 10px;
     }
   </style>
 </head>
@@ -65,7 +115,6 @@
 
 <header>
   <h1>World News Press</h1>
-  <div id="google_translate_element"></div>
   <select id="language_selector" onchange="translatePage()">
     <option value="">Select Language</option>
     <option value="en">English</option>
@@ -85,22 +134,27 @@
 
 <nav>
   <a href="#sport">Sport</a>
-  <a href="#europe">Europe</a>
-  <a href="#asia">Asia</a>
-  <a href="#australia">Australia</a>
-  <a href="#africa">Africa</a>
-  <a href="#southamerica">South America</a>
+  <a href="#europe">News from Europe</a>
+  <a href="#asia">News from Asia</a>
+  <a href="#australia">News from Australia</a>
+  <a href="#africa">News from Africa</a>
+  <a href="#southamerica">News from South America</a>
 </nav>
+
+<div id="edit_buttons">
+  <button id="editBtn">Edit</button>
+  <button id="saveBtn" style="display:none;">Save</button>
+  <button id="cancelBtn" style="display:none;">Cancel</button>
+</div>
 
 <div class="news-section" id="sport">
   <h2>Sport</h2>
   <div class="news-card">
-    <img src="https://ichef.bbci.co.uk/onesport/cps/800/cpsprodpb/1143A/production/_131414261_messi.jpg" alt="Sport news">
+    <img src="https://ichef.bbci.co.uk/onesport/cps/800/cpsprodpb/1143A/production/_131414261_messi.jpg" alt="Lionel Messi in action" class="editable-img" />
     <div class="news-content">
-      <h3>Lionel Messi Scores Twice in Copa América</h3>
-      <p class="short-text">In a thrilling performance, Lionel Messi led Argentina to victory against Chile in the group stage...</p>
-      <p class="full-text" style="display:none;">In a thrilling performance, Lionel Messi scored two brilliant goals, securing Argentina's lead in the Copa América group stage. Fans around the world celebrated the legendary player's contribution, as Argentina now looks forward to the quarterfinals.</p>
-      <span class="read-more" onclick="toggleText(this)">Read more</span>
+      <h3 class="editable" contenteditable="false">Lionel Messi Leads Argentina to Victory in Copa América</h3>
+      <p class="editable" contenteditable="false">Lionel Messi delivered an extraordinary performance in the latest Copa América match, scoring two crucial goals to secure Argentina’s win over Chile. The football legend showcased his skill, vision, and leadership on the field, delighting fans worldwide. This victory boosts Argentina’s confidence as they advance towards the quarterfinals. Analysts highlight Messi’s role as a pivotal player in South American football history, noting that his agility and precision remain unmatched.</p>
+      <p class="editable" contenteditable="false">The match was intense, with both teams showing strong defense. However, Messi’s ability to break through the opposition’s lines made the difference. His goals came from a brilliant free-kick and a quick counterattack finish. The crowd erupted in applause as Argentina sealed a 3-1 victory.</p>
     </div>
   </div>
 </div>
@@ -108,12 +162,11 @@
 <div class="news-section" id="europe">
   <h2>News from Europe</h2>
   <div class="news-card">
-    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/E7AE/production/_130761995_mediaitem130761993.jpg" alt="Europe">
+    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/E7AE/production/_130761995_mediaitem130761993.jpg" alt="EU leaders in Brussels" class="editable-img" />
     <div class="news-content">
-      <h3>EU Leaders Meet in Brussels to Discuss Climate Goals</h3>
-      <p class="short-text">European Union leaders are meeting to set new environmental targets for the next decade...</p>
-      <p class="full-text" style="display:none;">European Union leaders are meeting in Brussels this week to decide on ambitious climate goals, aiming to reduce emissions by 55% before 2030. Protests and debates continue across European capitals regarding the pace and cost of the transition.</p>
-      <span class="read-more" onclick="toggleText(this)">Read more</span>
+      <h3 class="editable" contenteditable="false">EU Leaders Convene to Set Ambitious Climate Goals</h3>
+      <p class="editable" contenteditable="false">European Union leaders gathered in Brussels to discuss and establish new climate action targets aimed at reducing greenhouse gas emissions by 55% by 2030. The summit reflects the EU’s commitment to combat climate change and transition towards a sustainable economy. Representatives from member states debated the balance between environmental policies and economic impacts, striving to find common ground.</p>
+      <p class="editable" contenteditable="false">Protesters gathered outside the venue calling for faster and more aggressive climate action. The leaders acknowledged the urgency but emphasized the need for policies that do not jeopardize economic stability. The meeting is considered a crucial step toward the upcoming global climate conferences.</p>
     </div>
   </div>
 </div>
@@ -121,12 +174,11 @@
 <div class="news-section" id="asia">
   <h2>News from Asia</h2>
   <div class="news-card">
-    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/1758B/production/_131861238_gettyimages-1322703233.jpg" alt="Asia">
+    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/1758B/production/_131861238_gettyimages-1322703233.jpg" alt="Heatwave in Tokyo" class="editable-img" />
     <div class="news-content">
-      <h3>Tokyo Prepares for Summer Heatwave</h3>
-      <p class="short-text">Authorities in Japan issue warnings as Tokyo faces extreme heat and humidity...</p>
-      <p class="full-text" style="display:none;">Authorities in Japan have issued public health warnings as Tokyo and surrounding areas are set to experience a record-breaking heatwave. Citizens are urged to stay hydrated and avoid outdoor activity during the hottest hours.</p>
-      <span class="read-more" onclick="toggleText(this)">Read more</span>
+      <h3 class="editable" contenteditable="false">Tokyo Faces Record-Breaking Summer Heatwave</h3>
+      <p class="editable" contenteditable="false">Tokyo is bracing for an unprecedented heatwave as temperatures are expected to soar above 40°C this week. Authorities have issued public warnings advising residents to stay indoors during peak heat hours and remain hydrated. The summer heat has caused power surges due to increased air conditioning use, putting strain on the city’s electricity grid.</p>
+      <p class="editable" contenteditable="false">Hospitals have reported a rise in heatstroke cases, particularly among the elderly and young children. The government is coordinating with health services to provide emergency cooling centers. Climate experts warn that such extreme weather events may become more frequent due to global warming trends.</p>
     </div>
   </div>
 </div>
@@ -134,12 +186,11 @@
 <div class="news-section" id="australia">
   <h2>News from Australia</h2>
   <div class="news-card">
-    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/10CF4/production/_131415737_gettyimages-1235013111.jpg" alt="Australia">
+    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/10CF4/production/_131415737_gettyimages-1235013111.jpg" alt="Australian bushfires" class="editable-img" />
     <div class="news-content">
-      <h3>Australian Bushfire Season Begins Early</h3>
-      <p class="short-text">Wildfires have already started in parts of New South Wales as temperatures rise unusually early...</p>
-      <p class="full-text" style="display:none;">Authorities in Australia are warning of a difficult fire season ahead, as dry conditions and high temperatures lead to early outbreaks of bushfires. Firefighters are already battling several blazes outside Sydney.</p>
-      <span class="read-more" onclick="toggleText(this)">Read more</span>
+      <h3 class="editable" contenteditable="false">Early Start to Australian Bushfire Season Raises Concerns</h3>
+      <p class="editable" contenteditable="false">The bushfire season in Australia has started unusually early this year, with several wildfires reported in New South Wales. Dry conditions and high temperatures have created a dangerous environment, prompting authorities to issue fire warnings and increase firefighting resources.</p>
+      <p class="editable" contenteditable="false">Communities near affected areas have been advised to prepare evacuation plans and stay alert. Firefighters are working tirelessly to contain the blazes, which have already destroyed several homes and natural habitats. Environmentalists urge for stronger policies to address climate change and prevent future disasters.</p>
     </div>
   </div>
 </div>
@@ -147,74 +198,8 @@
 <div class="news-section" id="africa">
   <h2>News from Africa</h2>
   <div class="news-card">
-    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/9874/production/_131551224_africaweather.jpg" alt="Africa">
+    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/11E5F/production/_131791886_gettyimages-1330260406.jpg" alt="African wildlife" class="editable-img" />
     <div class="news-content">
-      <h3>Severe Flooding Hits West Africa</h3>
-      <p class="short-text">Heavy rains have caused serious flooding across parts of Nigeria, Ghana, and Senegal...</p>
-      <p class="full-text" style="display:none;">Dozens of villages are affected and thousands displaced as weeks of rain lead to flooding in West Africa. Rescue teams are working to provide aid, and governments are coordinating responses.</p>
-      <span class="read-more" onclick="toggleText(this)">Read more</span>
-    </div>
-  </div>
-</div>
+      <h3 class="editable" contenteditable="false">Conservation Efforts Boost African Wildlife Populations</h3>
+      <p class="editable" contenteditable="false">Conservation
 
-<div class="news-section" id="southamerica">
-  <h2>News from South America</h2>
-  <div class="news-card">
-    <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/CE14/production/_131875228_amazon.jpg" alt="South America">
-    <div class="news-content">
-      <h3>Amazon Rainforest Faces Record Deforestation</h3>
-      <p class="short-text">Environmental groups are raising alarms as satellite data shows record deforestation in June...</p>
-      <p class="full-text" style="display:none;">Deforestation in the Amazon rainforest has reached a new monthly record, according to Brazil’s National Space Research Institute. Environmental activists are calling for immediate action to protect the ecosystem.</p>
-      <span class="read-more" onclick="toggleText(this)">Read more</span>
-    </div>
-  </div>
-</div>
-
-<script>
-function toggleText(el) {
-  const short = el.previousElementSibling.previousElementSibling;
-  const full = el.previousElementSibling;
-  if (full.style.display === "none") {
-    short.style.display = "none";
-    full.style.display = "block";
-    el.textContent = "Show less";
-  } else {
-    short.style.display = "block";
-    full.style.display = "none";
-    el.textContent = "Read more";
-  }
-}
-</script>
-
-<!-- Google Translate -->
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'en',
-    includedLanguages: 'en,es,fr,de,zh-CN,ja,ru,ar,pt,hi,it,ko',
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-  }, 'google_translate_element');
-}
-function translatePage() {
-  var lang = document.getElementById('language_selector').value;
-  if(lang === '') return;
-  var frame = document.querySelector('iframe.goog-te-menu-frame');
-  if(frame) {
-    var innerDoc = frame.contentDocument || frame.contentWindow.document;
-    var langLinks = innerDoc.querySelectorAll('a.goog-te-menu2-item span.text');
-    for(var i=0; i<langLinks.length; i++) {
-      if(langLinks[i].innerText === document.getElementById('language_selector').options[document.getElementById('language_selector').selectedIndex].text) {
-        langLinks[i].click();
-        break;
-      }
-    }
-  }
-}
-var gtScript = document.createElement('script');
-gtScript.type = 'text/javascript';
-gtScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-document.head.appendChild(gtScript);
-</script>
-
-</body>
-</html>
